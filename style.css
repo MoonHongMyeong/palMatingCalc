@@ -1,0 +1,28 @@
+.hidden {
+    display: none;
+}
+
+.appear {
+    display: block;
+}
+
+.input_container{
+    display: flex;
+}
+
+.mating{
+    display: flex;
+    flex-direction: column;
+}
+
+.listWrapper{
+    position: relative;
+    height: 10rem;
+    overflow-y: auto;
+}
+
+.pal:hover{
+    background-color: #166088;
+    color: white;
+    cursor: pointer;
+}
