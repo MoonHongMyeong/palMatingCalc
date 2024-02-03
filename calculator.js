@@ -15,7 +15,7 @@ const createPalList = (parent) => {
     resetElement.innerText = `초기화`;
     resetElement.className = 'pal';
     resetElement.addEventListener(`click`, function(e) {
-        targetInput.value = '';
+        targetInput.setAttribute('value', '');
         listWrapper.parentElement.classList.replace('appear', 'hidden');
     })
     listWrapper.appendChild(resetElement);
@@ -28,7 +28,7 @@ const createPalList = (parent) => {
         pal.innerText = `No.${palDatum.no} ${palDatum.name}`;
         listWrapper.appendChild(pal);
         pal.addEventListener(`click`, function(e){
-            targetInput.value = `No.${palDatum.no} ${palDatum.name}`;
+            targetInput.setAttribute('value', `No.${palDatum.no} ${palDatum.name}`);
             listWrapper.parentElement.classList.replace('appear', 'hidden');
         });
     });
@@ -50,6 +50,7 @@ function init(){
     const rangeText = document.querySelector('#depth_text')
     range.addEventListener('input', function(e){
         rangeText.innerText = e.target.value;
+        range.setAttribute('value', e.target.value)
     });
 
     base.addEventListener(`click`, function(e){
@@ -59,7 +60,7 @@ function init(){
     base.addEventListener('search', function(e){
         e.target.parentElement.parentElement.lastElementChild.classList.replace('appear', 'hidden');
     })
-
+    
     target.addEventListener(`click`, function(e){
         e.target.parentElement.parentElement.lastElementChild.classList.replace('hidden', 'appear');
     })
@@ -75,6 +76,24 @@ function init(){
         if ( target.parentElement.parentElement.lastElementChild.classList.contains('appear') && e.target !== target ) {
             target.parentElement.parentElement.lastElementChild.classList.replace('appear', 'hidden');
         }   
+    }) 
+
+    const observer = new MutationObserver((mutations) => {
+        console.log('mutation detecting');
+        console.log('보유 팰', base.value);
+        console.log('목표 팰', target.value);
+        console.log('교배 depth', range.value)
+        console.log('===================')
+    });
+
+    observer.observe(base, {
+        attributes: true
+    });
+    observer.observe(target, {
+        attributes: true
+    })
+    observer.observe(range, {
+        attributes: true
     })
 }
 
