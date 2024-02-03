@@ -28,7 +28,7 @@ const createPalList = (parent) => {
         pal.innerText = `No.${palDatum.no} ${palDatum.name}`;
         listWrapper.appendChild(pal);
         pal.addEventListener(`click`, function(e){
-            targetInput.value = e.target.getAttribute(`name`);
+            targetInput.value = `No.${palDatum.no} ${palDatum.name}`;
             listWrapper.parentElement.classList.replace('appear', 'hidden');
         });
     });
